@@ -17,6 +17,16 @@ services:
     depends_on:
       - db
 
+  producer:
+    container_name: producer
+    build: django
+    command: python manage.py produce
+    restart: always
+    volumes:
+      - ./django:/code
+    depends_on:
+      - kafka
+
   zookeeper:
     image: confluentinc/cp-zookeeper:6.1.0
     hostname: zookeeper
