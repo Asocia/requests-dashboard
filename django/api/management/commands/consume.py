@@ -1,7 +1,9 @@
 import json
 
 from django.core.management.base import BaseCommand
+from django.utils import timezone
 from kafka import KafkaConsumer
+from api.models import Request
 
 
 def value_deserializer(value):
@@ -22,6 +24,10 @@ class Command(BaseCommand):
         )
 
         for event in consumer:
-            event_data = event.value
-            # Do whatever you want
-            self.stdout.write(self.style.SUCCESS(f'consumer: {event_data}'))
+            tz = timezone.get_current_timezone()
+            dt = timezone.datetime.fromtimestamp(int(event.value['timestamp']),
+                                                 tz=tz)
+            data = {**event.value, 'datetime': dt}
+            del data['timestamp']
+            Request.objects.create(**data)
+            self.stdout.write(self.style.SUCCESS(f'consumer: {data}'))
