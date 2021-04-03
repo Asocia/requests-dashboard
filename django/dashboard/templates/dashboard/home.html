@@ -1,5 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% load plotly_dash %}
 {% block content %}
-<h1>Dashboard</h1>
+    <div class="{% plotly_class name='SimpleExample' %}">
+        {% plotly_app name='SimpleExample' ratio=0.99 %}
+    </div>
 {% endblock content %}

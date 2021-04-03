@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
     'api',
     'dashboard',
 ]
@@ -72,7 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_api.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -120,7 +120,16 @@ USE_L10N = True
 USE_TZ = True
 
 
+ASGI_APPLICATION = 'django_api.routing.application'
+
+PLOTLY_COMPONENTS = [
+    'dash_core_components',
+    'dash_html_components',
+    'dash_renderer',
+    'dpd_components'
+    ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
