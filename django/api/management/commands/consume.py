@@ -17,14 +17,11 @@ class Command(BaseCommand):
         consumer = KafkaConsumer(
             'requests',
             bootstrap_servers=['kafka:29092'],
-            auto_offset_reset='earliest',
-            enable_auto_commit=True,
-            api_version=(0, 11, 5),
             value_deserializer=value_deserializer
         )
 
+        tz = timezone.get_current_timezone()
         for event in consumer:
-            tz = timezone.get_current_timezone()
             dt = timezone.datetime.fromtimestamp(int(event.value['timestamp']),
                                                  tz=tz)
             data = {**event.value, 'datetime': dt}

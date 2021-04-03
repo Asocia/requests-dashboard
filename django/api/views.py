@@ -13,7 +13,7 @@ def handle_request(request, format=None):
     sleep(sleep_time)
     timestamp = int(datetime.now().timestamp())
     log_str = f'{request.method},{sleep_time*1000:.0f},{timestamp}'
-    with open('api.log', 'a+') as f:
+    with open('api.log', 'a') as f:
         print(log_str, file=f)
 
     return Response(status=status.HTTP_200_OK)
