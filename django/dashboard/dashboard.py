@@ -52,22 +52,24 @@ def update_ys(requests):
 
 
 # Plot initial graph
-now = timezone.datetime.now(tz=tz)
-previous_requests = deque(get_recent_requests(minutes=num_minutes))
-if previous_requests:
-    first_req_dt = timezone.template_localtime(previous_requests[0].datetime)
-    all_seconds = [first_req_dt + datetime.timedelta(seconds=x) for x in
-                   range(0, (now - first_req_dt).seconds)]
-    for t in all_seconds:
-        X.append(t)
-        current_requests = deque()
-        while previous_requests and previous_requests[0].datetime < t:
-            current_requests.appendleft(previous_requests.popleft())
-        update_ys(current_requests)
-else:
-    X.append(now)
-    for Y in Ys.values():
-        Y.append(0)
+def initial():
+    now = timezone.datetime.now(tz=tz)
+    previous_requests = deque(get_recent_requests(minutes=num_minutes))
+    if previous_requests:
+        first_req_dt = timezone.template_localtime(
+            previous_requests[0].datetime)
+        all_seconds = [first_req_dt + datetime.timedelta(seconds=x) for x in
+                       range(0, (now - first_req_dt).seconds)]
+        for t in all_seconds:
+            X.append(t)
+            current_requests = deque()
+            while previous_requests and previous_requests[0].datetime < t:
+                current_requests.appendleft(previous_requests.popleft())
+            update_ys(current_requests)
+    else:
+        X.append(now)
+        for Y in Ys.values():
+            Y.append(0)
 
 
 def make_scatter_plot(name):
@@ -83,6 +85,8 @@ def make_scatter_plot(name):
     Output('live-graph', 'figure'),
     [Input('graph-update', 'n_intervals')])
 def update_graph(value):
+    if not X:
+        initial()
     now = timezone.datetime.now(tz=tz)
     X.append(now)
     requests = get_recent_requests(seconds=4, only_new_requests=True)
