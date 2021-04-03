@@ -6,12 +6,17 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from django.utils import timezone
+
+
+tz = timezone.get_current_timezone()
+
 
 def handle_request(request, format=None):
     """ Return success for all requests """
     sleep_time = random() * 3
     sleep(sleep_time)
-    timestamp = int(datetime.now().timestamp())
+    timestamp = int(timezone.datetime.now(tz=tz).timestamp())
     log_str = f'{request.method},{sleep_time*1000:.0f},{timestamp}'
     with open('api.log', 'a') as f:
         print(log_str, file=f)
