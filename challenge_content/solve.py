@@ -4,11 +4,6 @@ from functools import partial
 base2 = partial(int, base=2)
 file_contents = []
 
-def chunks(lst, n):
-    """Yield successive n-sized chunks from lst."""
-    for i in range(0, len(lst), n):
-        yield lst[i:i + n]
-
 file_dir = 'kartaca'
 for filename in os.listdir(file_dir):
     with open(os.path.join(file_dir, filename)) as f:

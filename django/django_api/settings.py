@@ -122,12 +122,6 @@ USE_TZ = True
 
 ASGI_APPLICATION = 'django_api.routing.application'
 
-PLOTLY_COMPONENTS = [
-    'dash_core_components',
-    'dash_html_components',
-    'dash_renderer',
-    'dpd_components'
-    ]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
