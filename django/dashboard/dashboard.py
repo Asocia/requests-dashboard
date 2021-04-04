@@ -10,7 +10,7 @@ from django.utils import timezone
 
 from api.models import Request
 
-num_minutes = 20
+num_minutes = 60
 max_len = num_minutes * 60
 X = deque(maxlen=max_len)
 tz = timezone.get_current_timezone()
