@@ -37,3 +37,5 @@ The dashboard is available at http://127.0.0.1:8080. Note that its port is diffe
 - Secret key: gAAAAABgUJqwMzZTO_g2GqgORZD_LRGgIDVhfkX4Tn4pqnkx9awMU2pwZywJkcm7CmV791oNFeeiKp1WEruAHnEOBqqdS89JAzMfAvInFBaWnT5CzluI1kBElaLRUVc6U9S4VxfpJi9sZ0PCrfwaFrKzZzFENbMrG8SiAIsWPh0QEVgiQApPfKv_CcBhn-pVPFzi7gocBpn3
 
 - Getting the challenge content: You can find the code that I wrote to get the challenge content inside `challenge_content`. It's is not the best code but it gets the job done and I won't ever use it anymore so it's OK.
+
+- Sometimes producer and consumer doesn't start. It seems to occur *randomly* when the project is *first built*. I couldn't fix this because there is no log at `docker logs producer`, and I don't know a way to reproduce this every time. As a workaround, you can re-run the build command if this happens to you.

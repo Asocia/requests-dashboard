@@ -10,7 +10,6 @@ def value_serializer(value):
 
 producer = KafkaProducer(
     bootstrap_servers=['kafka:29092'],
-    api_version=(0, 11, 5),
     value_serializer=value_serializer
 )
 
@@ -29,6 +28,8 @@ async def readline(f):
 
 async def test():
     with open('api.log') as f:
+        dummy_data = dict(zip(header, ['GET', '0', '1617539865']))
+        producer.send('requests', value=dummy_data)
         while True:
             line = await readline(f)
             data = dict(zip(header, line.split(',')))
