@@ -27,7 +27,7 @@ http http://127.0.0.1:8000/api/get/
 ```
 
 
-The dashboard is available at http://127.0.0.1:8080. Note that its port is different even though it's same application. You can continue using port `8000` if you want but it will make dashboard to freeze when you perform requests because the application `sleep`s before responding to the requests.
+The dashboard is available at http://127.0.0.1:8080. Note that its port is different even though it's same application. You can continue using port `8000` if you want but it will cause dashboard to freeze when you perform requests because the application `sleep`s before responding to the requests.
 
 ## Sample Screenshots
 ![alt text](https://i.imgur.com/YxenkyO.png "Dashboard")
