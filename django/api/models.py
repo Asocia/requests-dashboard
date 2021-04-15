@@ -8,4 +8,6 @@ class Request(models.Model):
     shown_in_graph = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.type} - {self.response_time} ms - {self.datetime.strftime("%H:%M")}'
+        return (
+            f'{self.type} - {self.response_time} ms - {self.datetime.strftime("%H:%M")}'
+        )

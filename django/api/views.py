@@ -17,14 +17,14 @@ def handle_request(request, format=None):
     sleep_time = random() * 3
     sleep(sleep_time)
     timestamp = int(timezone.datetime.now(tz=tz).timestamp())
-    log_str = f'{request.method},{sleep_time*1000:.0f},{timestamp}'
-    with open('api.log', 'a') as f:
+    log_str = f"{request.method},{sleep_time*1000:.0f},{timestamp}"
+    with open("api.log", "a") as f:
         print(log_str, file=f)
 
     return Response(status=status.HTTP_200_OK)
 
 
-handle_get = api_view(['GET'])(handle_request)
-handle_post = api_view(['POST'])(handle_request)
-handle_put = api_view(['PUT'])(handle_request)
-handle_delete = api_view(['DELETE'])(handle_request)
+handle_get = api_view(["GET"])(handle_request)
+handle_post = api_view(["POST"])(handle_request)
+handle_put = api_view(["PUT"])(handle_request)
+handle_delete = api_view(["DELETE"])(handle_request)
